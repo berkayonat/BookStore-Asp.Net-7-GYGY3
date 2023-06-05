@@ -4,6 +4,7 @@ using BookStore.Mvc.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using BookStore.Persistence.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -16,7 +17,7 @@ builder.Services.AddDefaultIdentity<AppUser>(options =>
 {   options.SignIn.RequireConfirmedAccount = false;
     options.Password.RequireNonAlphanumeric = false; })
     .AddRoles<AppRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

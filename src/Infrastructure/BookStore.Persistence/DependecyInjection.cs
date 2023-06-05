@@ -20,7 +20,7 @@ namespace BookStore.Persistence
             var connectionString = configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(connectionString, a => a.MigrationsAssembly("BookStore.Mvc")));
+                options.UseSqlServer(connectionString));
             services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>());
         }
     }

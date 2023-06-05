@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Persistence.Data
 {
-    public class AppDbContext : IdentityDbContext, IAppDbContext
+    public class AppDbContext : IdentityDbContext<AppUser,AppRole,int>, IAppDbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
