@@ -1,4 +1,6 @@
-﻿using BookStore.Mvc.Models;
+﻿using BookStore.Application.CQRS.Queries.Book.GetAllBooks;
+using BookStore.Mvc.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +9,18 @@ namespace BookStore.Mvc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMediator _mediator;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMediator mediator)
         {
             _logger = logger;
+            _mediator = mediator;
         }
 
-        public IActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var books = await _mediator.Send(new GetAllBooksQuery());
+            return View(books);
         }
 
         public IActionResult Privacy()

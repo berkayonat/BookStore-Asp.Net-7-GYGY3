@@ -17,6 +17,6 @@ namespace BookStore.Domain
         public string? Description { get; set; }
         public bool Status { get; set; } = false;
 
-        public ICollection<Book> Books { get; set; }
+        public ICollection<Book>? Books { get; set; }
     }
 }

@@ -33,12 +33,12 @@ namespace BookStore.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IList<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await dbSet.AsNoTracking().ToListAsync();
         }
 
-        public async Task<IList<T>> GetAllWithPredicate(Expression<Func<T, bool>> predicate)
+        public async Task<IEnumerable<T>> GetAllWithPredicate(Expression<Func<T, bool>> predicate)
         {
             return await dbSet.AsNoTracking().Where(predicate).ToListAsync();
         }

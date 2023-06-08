@@ -1,5 +1,6 @@
 ﻿using BookStore.Application.Interfaces;
 using BookStore.Persistence.Data;
+using BookStore.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,11 @@ namespace BookStore.Persistence
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString));
             services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>());
+            services.AddScoped<IBookRepository, EFBookRepository>();
+            services.AddScoped<IAuthorRepository, EFAuthorRepository>();
+            services.AddScoped<IGenreRepository, EFGenreRepository>();
+            services.AddScoped<IPublisherRepository, EFPublisherRepository>();
         }
+
     }
 }

@@ -9,6 +9,6 @@ namespace BookStore.Application.Interfaces
 {
     public interface IBookRepository : IGenericRepository<Book>
     {
-
+        Task<IEnumerable<Book>> GetAllBooksWithInclude();
     }
 }

@@ -18,7 +18,7 @@ namespace BookStore.Persistence.Data
         {
             
         }
-        public override int SaveChanges()
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var entries = ChangeTracker
                 .Entries()
@@ -36,7 +36,7 @@ namespace BookStore.Persistence.Data
                 }
             }
 
-            return base.SaveChanges();
+            return await base.SaveChangesAsync(cancellationToken);
         }
         public DbSet<Author> Authors { get; set; }
 
@@ -65,16 +65,14 @@ namespace BookStore.Persistence.Data
                 .WithMany(a => a.Books);
 
             builder.Entity<Book>()
-                .HasMany<Genre>(b => b.Genres)
-                .WithMany(g => g.Books);
+                .HasOne<Genre>(b => b.Genre)
+                .WithMany(g => g.Books)
+                .HasForeignKey(b => b.GenreId);
 
             builder.Entity<Book>()
                 .Property(b => b.Title) 
                 .IsRequired()
                 .HasMaxLength(150);
-            builder.Entity<Book>()
-                .Property(b => b.PublisherId)
-                .IsRequired();
             builder.Entity<Book>()
                 .Property(b => b.Title)
                 .IsRequired()
@@ -90,12 +88,12 @@ namespace BookStore.Persistence.Data
                 .IsRequired()
                 .HasMaxLength(150);
 
-            //builder.Entity<AppUser>()
-            //    .Property(a => a.FirstName)
-            //    .HasMaxLength(150);
-            //builder.Entity<AppUser>()
-            //    .Property(a => a.LastName)
-            //    .HasMaxLength(150);
+            builder.Entity<AppUser>()
+                .Property(a => a.FirstName)
+                .HasMaxLength(150);
+            builder.Entity<AppUser>()
+                .Property(a => a.LastName)
+                .HasMaxLength(150);
 
         }
     }

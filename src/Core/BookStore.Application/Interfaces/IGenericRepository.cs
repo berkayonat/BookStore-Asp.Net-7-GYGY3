@@ -9,9 +9,9 @@ namespace BookStore.Application.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
-        Task<IList<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync();
         Task<T?> GetByIdAsync(int id);
-        Task<IList<T>> GetAllWithPredicate(Expression<Func<T, bool>> predicate);
+        Task<IEnumerable<T>> GetAllWithPredicate(Expression<Func<T, bool>> predicate);
         Task CreateAsync(T entity);
         Task DeleteAsync(int id);
         Task UpdateAsync(T entity);
