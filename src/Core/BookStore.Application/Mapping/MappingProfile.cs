@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BookStore.Application.CQRS.Commands.Book.CreateBook;
+using BookStore.Application.CQRS.Commands.Book.UpdateBook;
 using BookStore.Application.DTOs.Author;
 using BookStore.Application.DTOs.Book;
 using BookStore.Application.DTOs.Genre;
@@ -20,6 +21,7 @@ namespace BookStore.Application.Mapping
             CreateMap<Author, GetAllAuthorsDto>().ReverseMap();
             CreateMap<Genre, GetAllGenresDto>().ReverseMap();
             CreateMap<CreateBookCommand, Book>().ReverseMap();
+            CreateMap<UpdateBookCommand, Book>().ReverseMap();
         }
     }
 }

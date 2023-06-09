@@ -19,14 +19,9 @@
 
   <ItemGroup>
     <Folder Include="CQRS\Commands\Author\CreateAuthor\" />
-    <Folder Include="CQRS\Commands\Book\CreateBook\" />
-    <Folder Include="CQRS\Commands\Book\DeleteBook\" />
-    <Folder Include="CQRS\Commands\Book\UpdateBook\" />
     <Folder Include="CQRS\Commands\Genre\" />
     <Folder Include="CQRS\Commands\Publisher\" />
     <Folder Include="CQRS\Queries\Book\GetBookById\" />
-    <Folder Include="CQRS\Queries\Publisher\" />
-    <Folder Include="DTOs\Publisher\" />
     <Folder Include="Mapping\" />
   </ItemGroup>
 

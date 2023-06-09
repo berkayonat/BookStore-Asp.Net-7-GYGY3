@@ -1,4 +1,5 @@
 ﻿using BookStore.Application.Interfaces;
+using BookStore.Domain.Common;
 using BookStore.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Persistence.Repositories
 {
-    public class EFGenericRepository<T> : IGenericRepository<T> where T : class
+    public class EFGenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         private readonly AppDbContext _context;
         private readonly DbSet<T> dbSet;
@@ -46,6 +47,11 @@ namespace BookStore.Persistence.Repositories
         public async Task<T?> GetByIdAsync(int id)
         {
             return await dbSet.FindAsync(id);
+        }
+
+        public async Task<bool> IsExistsAsync(int id)
+        {
+            return await dbSet.AnyAsync(x => x.Id == id);
         }
 
         public async Task UpdateAsync(T entity)

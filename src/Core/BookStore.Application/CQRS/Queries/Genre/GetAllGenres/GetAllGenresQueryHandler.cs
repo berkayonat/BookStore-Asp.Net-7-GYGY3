@@ -20,7 +20,7 @@ namespace BookStore.Application.CQRS.Queries.Genre.GetAllGenres
             _mapper = mapper;
             _genreRepository = genreRepository;
         }
-        async Task<IEnumerable<GetAllGenresDto>> IRequestHandler<GetAllGenresQuery, IEnumerable<GetAllGenresDto>>.Handle(GetAllGenresQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<GetAllGenresDto>> Handle(GetAllGenresQuery request, CancellationToken cancellationToken)
         {
             var genres = await _genreRepository.GetAllAsync();
             return _mapper.Map<IEnumerable<GetAllGenresDto>>(genres);

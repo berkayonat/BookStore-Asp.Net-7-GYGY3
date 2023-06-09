@@ -6,8 +6,8 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-3">
-            <div class="card">
+        <div class="col-6 col-md-3">
+            <div class="card m-1">
                 <img src="@item.ImageUrl" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">@item.Title</h5>
@@ -17,8 +17,8 @@
                     <p class="card-text">
                         @(item.Publisher != null ? item.Publisher.Name : "")
                     </p>
-                    <p class="card-text">@item.Price TL</p>
-                    <button class="btn btn-success basket" data-id="@item.Id">Sepete ekle</button>
+                    <p class="card-text text-end fw-bold">@item.Price ₺</p>
+                    <button class="btn btn-success basket float-end" data-id="@item.Id">Sepete ekle</button>
                 </div>
             </div>
         </div>   
