@@ -3,34 +3,64 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <div class="row">
-    @foreach (var item in Model.Books)
-    {
-        <div class="col-6 col-lg-3 mb-3">
-            <div class="card h-100">
-                <img src="@item.ImageUrl" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">@item.Title</h5>
-                    <p class="card-text">
-                        @(item.Authors?.Any() == true ? string.Join(", ", item.Authors.Select(a => a.Name)) : "")
-                    </p>
-                    <p class="card-text">
-                        @(item.Publisher != null ? item.Publisher.Name : "")
-                    </p>
+    <div class="col-2 bg-light">
+        @await Component.InvokeAsync("Menu")
+    </div>
+    <div class="col-10">
+        <div class="row">
+            @foreach (var item in Model.Books)
+            {
+                <div class="col-6 col-lg-3 mb-3">
+                    <div class="card h-100">
+                        <img src="@item.ImageUrl" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">
+                                @(item.Authors?.Any() == true ? string.Join(", ", item.Authors.Select(a => a.Name)) : "")
+                            </p>
+                            <p class="card-text">
+                                @(item.Publisher != null ? item.Publisher.Name : "")
+                            </p>
 
 
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text text-end fw-bold">@item.Price ₺</p>
+                            <button class="btn btn-success basket float-end" data-id="@item.Id">Sepete ekle</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <p class="card-text text-end fw-bold">@item.Price ₺</p>
-                    <button class="btn btn-success basket float-end" data-id="@item.Id">Sepete ekle</button>
-                </div>
-            </div>
+
+            }
         </div>
-
-    }
+        <div>
+            <div page-model="Model.PagingInfo" page-action="Index"></div>
+        </div>
+    </div>
 </div>
-<div>
-    <div page-model="Model.PagingInfo" page-action="Index"></div>
-</div>
 
 
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $('.basket').on('click', function () {
+                let id = $(this).data('id');
+                $.ajax({
+                    url: '/Shopping/AddBook/' + id,
+                    type: 'GET',
+                    success: function (data) {
+                        $('.toast-body').text(data.message);
+                        alertify.success(data.message);
+                    },
+                    error: function (err) {
+                        console.log('hata', error);
+                    }
+                });
+            });
+        });
+    </script>
+}

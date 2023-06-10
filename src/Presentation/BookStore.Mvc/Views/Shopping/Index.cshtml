@@ -1,0 +1,42 @@
+﻿@model BookCollection
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Shopping Cart</h1>
+@if (Model.BookItems.Count == 0)
+{
+    <div class="alert alert-warning">
+        You don't have any items in your cart!
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bookItem in Model.BookItems)
+            {
+                <tr>
+                    <td>@bookItem.Book.Title</td>
+                    <td>@bookItem.Book.Price</td>
+                    <td>@bookItem.Quantity</td>
+                    <td>@(bookItem.Quantity * bookItem.Book.Price)</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-end">Total: @Model.TotalBookPrice()</td>
+            </tr>
+        </tfoot>
+    </table>
+}
+

@@ -22,8 +22,12 @@ builder.Services.AddDefaultIdentity<AppUser>(options =>
     .AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddControllersWithViews();
 
-//Caching:
 builder.Services.AddMemoryCache();
+
+builder.Services.AddSession(opt =>
+{
+    opt.IdleTimeout = TimeSpan.FromMinutes(15);
+});
 
 var app = builder.Build();
 
@@ -47,6 +51,8 @@ DbSeeding.SeedDatabase(context);
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseSession();
 
 app.UseRouting();
 

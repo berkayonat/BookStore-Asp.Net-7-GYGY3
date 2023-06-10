@@ -1,0 +1,13 @@
+﻿@model BookCollection
+@if (Model == null)
+{
+    <li class="nav-item">
+        <a class="nav-link text-white bg-warning rounded-3" asp-area="" asp-controller="Shopping" asp-action="Index">Shopping Cart</a>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-white bg-warning rounded-3" asp-area="" asp-controller="Shopping" asp-action="Index">Shopping Cart <span class="badge rounded-pill bg-secondary">@Model.TotalBookCount()</span> </a>
+    </li>
+}
