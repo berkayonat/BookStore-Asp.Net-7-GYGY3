@@ -21,7 +21,6 @@
     <Folder Include="CQRS\Commands\Author\CreateAuthor\" />
     <Folder Include="CQRS\Commands\Genre\" />
     <Folder Include="CQRS\Commands\Publisher\" />
-    <Folder Include="CQRS\Queries\Book\GetBookById\" />
     <Folder Include="Mapping\" />
   </ItemGroup>
 

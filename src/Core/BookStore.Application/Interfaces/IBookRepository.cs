@@ -10,5 +10,7 @@ namespace BookStore.Application.Interfaces
     public interface IBookRepository : IGenericRepository<Book>
     {
         Task<IEnumerable<Book>> GetAllBooksWithInclude();
+        Task<IEnumerable<Book>> GetAllBooksByGenreWithInclude(int? id);
+        Task<Book?> GetBookByIdWithInclude(int id);
     }
 }

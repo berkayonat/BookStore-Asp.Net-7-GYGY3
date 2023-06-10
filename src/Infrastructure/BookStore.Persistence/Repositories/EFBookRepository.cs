@@ -18,6 +18,13 @@ namespace BookStore.Persistence.Repositories
         {
             _context = context;
         }
+
+        public async Task<IEnumerable<Book>> GetAllBooksByGenreWithInclude(int? id)
+        {
+            return await _context.Books.Include(a => a.Authors).Include(a => a.Genre)
+                .Include(a => a.Publisher).AsNoTracking().Where(b => b.GenreId == id).ToListAsync();
+        }
+
         public async Task<IEnumerable<Book>> GetAllBooksWithInclude()
         {
             return await _context.Books.Include(a => a.Authors).Include(a => a.Genre)

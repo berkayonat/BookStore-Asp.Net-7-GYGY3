@@ -18,6 +18,7 @@ namespace BookStore.Application.Mapping
         public MappingProfile() 
         {
             CreateMap<Book, GetAllBooksDto>().ReverseMap();
+            CreateMap<Book, GetBookDto>().ReverseMap();
             CreateMap<Author, GetAllAuthorsDto>().ReverseMap();
             CreateMap<Genre, GetAllGenresDto>().ReverseMap();
             CreateMap<CreateBookCommand, Book>().ReverseMap();
