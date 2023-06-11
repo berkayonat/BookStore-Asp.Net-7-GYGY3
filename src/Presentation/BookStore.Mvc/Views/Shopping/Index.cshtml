@@ -16,6 +16,7 @@ else
         <thead>
             <tr>
                 <th>Product</th>
+                <th>Image</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
@@ -26,6 +27,7 @@ else
             {
                 <tr>
                     <td>@bookItem.Book.Title</td>
+                    <td><img src="@bookItem.Book.ImageUrl" width="80" height="100"></td>
                     <td>@bookItem.Book.Price</td>
                     <td>@bookItem.Quantity</td>
                     <td>@(bookItem.Quantity * bookItem.Book.Price)</td>
@@ -34,9 +36,15 @@ else
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="4" class="text-end">Total: @Model.TotalBookPrice()</td>
+                <td colspan="5" class="text-end fw-bold">Total: @Model.TotalBookPrice()</td>
+                
             </tr>
+            
         </tfoot>
+
     </table>
+    <a asp-controller="" asp-action="" class="btn btn-warning float-end">
+        Order
+    </a>
 }
 
