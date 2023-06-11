@@ -29,7 +29,7 @@ namespace BookStore.Application.CQRS.Commands.Book.UpdateBook
                 var book = _mapper.Map<BookStore.Domain.Book>(request);
                 if (request.AuthorIds != null)
                 {
-                    book.Authors?.Clear();
+                    
                     foreach (var authorId in request.AuthorIds)
                     {
                         var author = await _authorRepository.GetByIdAsync(authorId);

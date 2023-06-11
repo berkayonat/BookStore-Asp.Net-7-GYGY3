@@ -22,6 +22,8 @@ namespace BookStore.Application.CQRS.Commands.Book.UpdateBook
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public bool Status { get; set; } = false;
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
         public IList<int>? AuthorIds { get; set; }
     }
 }

@@ -26,6 +26,10 @@ namespace BookStore.Application.CQRS.Commands.Book.CreateBook
         public async Task Handle(CreateBookCommand request, CancellationToken cancellationToken)
         {
             var book = _mapper.Map<BookStore.Domain.Book>(request);
+            if (book.ImageUrl == null)
+            {
+                book.ImageUrl = "https://picsum.photos/200/300";
+            }
             if (request.AuthorIds != null)
             {
                 foreach (var authorId in request.AuthorIds)

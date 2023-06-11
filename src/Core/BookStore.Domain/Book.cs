@@ -18,7 +18,7 @@ namespace BookStore.Domain
         public int PublisherId { get; set; }
         public int GenreId { get; set; }
         public DateTime? PublicationDate { get; set; }
-        public string? ImageUrl { get; set; }
+        public string? ImageUrl { get; set; } = "https://picsum.photos/200/300";
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public bool Status { get; set; } = false;

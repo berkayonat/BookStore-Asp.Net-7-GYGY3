@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BookStore.Application.DTOs.Book.GetAllBooksDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container" p-3>
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Book List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Book" asp-action="Create" class="btn btn-primary">
+                Create New
+            </a>
+        </div>
+    </div>
+    <br />
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Image
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Authors
+                </th>
+                <th>
+                    Publisher
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        <img src="@item.ImageUrl" width="80" height="100">
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        @(item.Authors?.Any() == true ? string.Join(", ", item.Authors.Select(a => a.Name)) : "")
+                    </td>
+                    <td>
+                        @(item.Publisher != null ? item.Publisher.Name : "")
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a asp-controller="Book" asp-action="Edit" asp-route-id="@item.Id"
+                               class="btn btn-primary mx-2"> Edit</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a asp-controller="Book" asp-action="Delete" asp-route-id="@item.Id"
+                               onclick="return confirm('Are you sure?')" class="btn btn-danger mx-2">
+                                Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
