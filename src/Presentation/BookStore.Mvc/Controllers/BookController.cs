@@ -66,6 +66,9 @@ namespace BookStore.Mvc.Controllers
                 await _mediator.Send(request);
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Genres = await GetGenresForSelectList();
+            ViewBag.Publishers = await GetPublishersForSelectList();
+            ViewBag.Authors = await GetAuthorsForSelectList();
             return View(request);
         }
 
@@ -89,6 +92,9 @@ namespace BookStore.Mvc.Controllers
                 await _mediator.Send(request);
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Genres = await GetGenresForSelectList();
+            ViewBag.Publishers = await GetPublishersForSelectList();
+            ViewBag.Authors = await GetAuthorsForSelectList();
             return View(request);
         }
 
