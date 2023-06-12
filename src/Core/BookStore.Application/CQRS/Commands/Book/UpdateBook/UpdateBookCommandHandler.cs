@@ -27,16 +27,18 @@ namespace BookStore.Application.CQRS.Commands.Book.UpdateBook
             if (await _bookRepository.IsExistsAsync(request.Id))
             {
                 var book = await _bookRepository.GetBookByIdWithInclude(request.Id);
-                
-                book.Title = request.Title;
-                book.Description = request.Description;
-                book.GenreId = request.GenreId;
-                book.PublisherId = request.PublisherId;
-                book.PublicationDate = request.PublicationDate;
-                book.ImageUrl = request.ImageUrl;
-                book.Price = request.Price;
-                book.Quantity = request.Quantity;
-                book.Status = request.Status;
+
+                //book.Title = request.Title;
+                //book.Description = request.Description;
+                //book.GenreId = request.GenreId;
+                //book.PublisherId = request.PublisherId;
+                //book.PublicationDate = request.PublicationDate;
+                //book.ImageUrl = request.ImageUrl;
+                //book.Price = request.Price;
+                //book.Quantity = request.Quantity;
+                //book.Status = request.Status;
+
+                _mapper.Map(request, book);
 
                 book.Authors?.Clear();
                 if (request.AuthorIds != null)
